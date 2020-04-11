@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Simple Blog</title>
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='style.css') }}">
+  </head>
+
+  <body>
+    <div class='page'>
+      <h1><a href="{{ url_for('index') }}">Simple Blog</a></h1>
+
+      <div class='metanav'>
+            <a href="{{ url_for('post') }}">post</a>
+            <a href="{{ url_for('delete') }}">delete</a>
+            <a href="{{ url_for('signup') }}">signup</a>
+            {% if not session.login %}
+                 <a href="{{ url_for('login') }}">login</a>
+            {% else %}
+                <a href="{{ url_for('logout') }}">logout</a>
+            {% endif %}
+      </div>
+
+      {% for message in get_flashed_messages() %}
+        <div class='flash'>{{ message }}</div>
+      {% endfor %}
+
+      {% block body %}{% endblock %}
+    </div>
+  </body>
+</html>

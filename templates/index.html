@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+        <ul class=entries>
+        {% for article in articles %}
+            <li><h2>{{ article.id}}.{{ article.title }}</h2>{{ article.text|safe }}</li>
+        {% else %}
+            <li><em>Unbelievable, no articles here so far.</em><li>
+        {% endfor %}
+        </ul>
+
+{% endblock %}
